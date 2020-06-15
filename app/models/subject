@@ -1,0 +1,4 @@
+class Subject < ActiveRecord::Base
+    has_many(:students, through: :lessonplans)
+    has_many(:lessonplans)
+end
