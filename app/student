@@ -1,5 +1,0 @@
-
-class Student < ActiveRecord::Base
-    has_many(:lessonplans)
-    has_many(:subjects, through: :lessonplans)
-end
