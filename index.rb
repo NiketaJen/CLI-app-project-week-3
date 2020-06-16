@@ -12,13 +12,13 @@ class CLI
    puts "Welcome to StudyHelper! We're exicted to help you reach your learning goals."
    puts "Please enter your name"
    @user_name = gets.chomp()
-   existing_student = Students.find_by(name: @user_name)
+   existing_student = Student.find_by(name: @user_name)
       if (existing_student != nil)
          current_student = existing_student
-         "Welcome back, #{current_student}."
+         puts "Welcome back, #{current_student.name}."
       else
          current_student = Student.create({name: @user_name})
-         "Looks like you're new here."
+         puts "Looks like you're new here."
       end
       self.option_menu
    end
@@ -59,23 +59,21 @@ class CLI
       if @users_choice == "5"
          return self.option_menu
       elsif @users_choice == "4"
-         puts "Error: We're not quite ready to teach coding, yet."
+         puts "Sorry, we're not quite ready to teach coding, yet."
          puts "Maybe you should look into Flatiron, instead."
          return self.learn_subject
-      else
-         self.quiz_selection
-      end
-   end
-
-   def quiz_selection
-      puts ""
-      puts "Before we choose a lesson plan, let's take a quick quiz."
-      if @userschoice == "1"
-         self.math_quiz
+      elsif @users_choice == "1"
+         puts ""
+         puts "Before we choose a lesson plan, let's take a quick quiz."
+         return self.math_quiz
       elsif @userschoice == "2"
-         self.biology_quiz
+         puts ""
+         puts "Before we choose a lesson plan, let's take a quick quiz."
+         return self.biology_quiz
       elsif @userschoice == "3"
-         self.english_quiz
+         puts ""
+         puts "Before we choose a lesson plan, let's take a quick quiz."
+         return self.english_quiz
       end
    end
 
@@ -84,7 +82,37 @@ class CLI
    end
 
    def biology_quiz
-      puts "Biology Quiz"
+      count = 0
+      puts "Question 1"
+      puts "Biology is the study of:"
+      puts "1) People"
+      puts "2) Life"
+      puts "3) Studying"
+      answer1 = gets.chomp()
+      if answer1 == "2" || "Life" || "life"
+         count += 1
+         puts "Correct!"
+      else
+         "Incorrect"
+      end
+      puts ""
+      puts "Question 2"
+      puts "All living things are made of:"
+      puts "1) Cells"
+      puts "2) Money"
+      puts "3) I don't know, that's why I'm here"
+      answer2 = gets.chomp()
+      if answer2 == "1" || "Cells" || "cells"
+         count += 1
+         puts "Great job!"
+      elsif answer2 == "3" || "I don't know, that's why I'm here"
+         puts "Well, at least you're honest."
+      else
+         puts "Incorrect"
+      end
+      puts ""
+      puts "Question 3"
+      puts ""
    end
 
    def english_quiz
