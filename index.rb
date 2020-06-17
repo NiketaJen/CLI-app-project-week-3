@@ -1,25 +1,31 @@
 require_relative './config/environment.rb'
+require 'tty-prompt'
 ActiveRecord::Base.logger = nil
 
 
 class CLI
    
    def initialize
+       a = Artii::Base.new :font => 'slant'
+      puts a.asciify('Study Helper').blue
       self.opening_message()
    end
 
    def opening_message
+   puts ""
    puts "Welcome to StudyHelper! We're exicted to help you reach your learning goals."
-   puts "Please enter your name"
+   puts ""
+   puts "Please enter your name".light_blue
    @user_name = gets.chomp()
    existing_student = Student.find_by(name: @user_name)
       if (existing_student != nil)
          @current_student = existing_student
-         "Welcome back, #{@current_student}."
+         puts ""
+         puts "Welcome back, #{@current_student.name}.".yellow
          self.option_menu
       else
          @current_student = Student.create({name: @user_name})
-         "Looks like you're new here."
+        puts "Looks like you're new here.".yellow
          self.learn_subject
       end
    end
@@ -27,6 +33,9 @@ class CLI
    
    def option_menu
       puts ""
+      #option_menu_prompt = 
+      # choices = {1 => "Look at my subjects",  2 => 'Learn a new subject', 3 => "Quit"}
+      # prompt.select("What would you like to do?", choices)
       puts "What would you like to do?"
       puts "1) Look at my subjects"
       puts "2) Learn a new subject"
@@ -334,7 +343,7 @@ class CLI
       puts "To see well, the lights in this room need to be adjusted."
       puts "1) This sentence is correct."
       puts "2) This sentence has a dangling modifier."
-      puts "3) This sentence has a coma splice."
+      puts "3) This sentence has a comma splice."
       answer3 = gets.chomp()
       if answer3 == "2"
          right_answers = right_answers + 1
@@ -400,6 +409,20 @@ class CLI
 
    def math_41
       puts "math_41"
+      puts "Lesson 1: Cancelling or Converting Units "
+      puts "To convert between units, you're usually given one measure and asked to convert another measure. For instance, you'll be given some volume in 'gallons' and be asked to convert the volume to 'fluid ounces'. They will have given you the conversion units that are suitable to the task. In these simple scenarios, all you have to do to convert is remember a fairly simple rule:"
+      puts "going to smaller units means going to bigger numbers, so multiply"
+      puts "going to bigger units means, going to smaller numbers, so divide"
+      puts ""
+      puts "Here's how it works"
+      puts ""
+      puts "Convert 3 gallons to quarts"
+      puts ""
+      puts "Quarts are smaller than gallons; every gallon has 4 quarts. Since I'm converting from a larger unit(gallons) to a smaller unit(quarts), my answer needs to be a bigger number. So I multiply:"
+      puts "(3)(4) = 12"
+      puts "Then:"
+      puts ""
+      puts "Answer: 12 quarts"
    end
 
    def math_42
@@ -480,6 +503,17 @@ class CLI
 
    def eng_48
       puts "eng_48"
+      puts ""
+      puts "Welcome to Advanced English."
+      puts "Lesson 1: What is Inference?"
+      puts ""
+      puts "Inference is using observation and background to reach a logical conclusion. You probably practive inference everyday. For example, if you see someone eating a new food and he or she makes a face, then you infer he does not like it. Or if someone slams a door, you can infer that he is upset about something."
+      puts ""
+      puts "Before you can begin to practice inference in literature, you should know what you are looking for. Your goal is to find the intended meaning of the text. Intended meaning is what we think the author is trying to teach us."
+      puts ""
+      puts "Why is it important to make inferences? When writing a story, an author will not include all the information for us. They will expect us to read between the lines and reach conclusions about the text. When making inferences, you are looking beyond what is stated in the text and finding ideas to which the author only hints. This makes you a more active reader and critical thinker. It also makes it easier to understand what the author is sharing with you."
+
+
    end
 
 end
