@@ -176,7 +176,7 @@ class CLI
       if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 40})
          puts ""
-         puts "You've been placed in math for beginners."
+         puts "You've been placed in beginner math."
          puts "Let's start with some basics."
          puts ""
          self.math_40
@@ -276,7 +276,7 @@ class CLI
          if right_answers < 3
             Lesson.create({student_id: @current_student.id, subject_id: 43})
             puts ""
-            puts "You've been placed in biology for beginners."
+            puts "You've been placed in begginer biology."
             puts "Let's start where it all began."
             puts ""
             self.bio_43
@@ -372,14 +372,14 @@ class CLI
       if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 46})
          puts ""
-         puts "You've been placed in English for beginners."
+         puts "You've been placed in beginner English."
          puts "Let's start with some basics."
          puts ""
          self.eng_46
       elsif right_answers < 5
          Lesson.create({student_id: @current_student.id, subject_id: 47})
          puts ""
-         puts "Congrats! You've been placed in to intermediate English"
+         puts "Congrats! You've been placed in intermediate English"
          puts "Let's get started."
          puts ""
          self.eng_47
@@ -394,27 +394,59 @@ class CLI
    end
 
    def math_40
-      puts "math_40"
+      puts ""
+      puts "Welcome to Math 40!"
    end
 
    def math_41
-      puts "math_41"
+      puts ""
+      puts "Welcome to Math 41!"
    end
 
    def math_42
-      puts "math_42"
+      puts ""
+      puts "Welcome to Math 42!"
    end
 
    def bio_43
-      puts "bio_43"
+      puts ""
+      puts "Welcome to Bio 43!"
+      puts ""
+      puts "Everything in the world can be placed into one of two categories:"
+      puts "Biotic or Abiotic"
+      puts "Abiotic means 'non-living.' In this case, it means things that were never alive."
+      puts "Things like mountains, water, or the sky."
+      puts "Conversely, biotic means 'living,' and that includes anything that's ever lived."
+      puts "That could be lions, bacteria, people, or even the flowers I forgot to water last week that have since passed."
+      puts "Though this encompasses vastly different types of life from whales to mushrooms and trees to protists,"
+      puts "there are shared traits among all of them.  Perhaps none as important as DNA."
+      puts ""
+      puts "Continue reading? Yes / No"
+      yes_or_no = gets.chomp()
+      if yes_or_no == "no"
+         self.option_menu
+      end
+      puts ""
+      puts "DNA is the genetic material that makes you, you and makes me, me."
+      puts "It makes an elephant an elephant and a flower a flower."
+      puts "Despite how different these things may seem, their DNA is actually the same."
+      puts "The only difference is in how it's expressed."
+      puts ""
+      puts "Continue reading? Yes / No"
+      yes_or_no = gets.chomp()
+      if yes_or_no == "no"
+         self.option_menu
+      end
    end
 
    def bio_44
-      puts "bio_44"
+      puts ""
+      puts "Welcome to Bio 44!"
    end
 
    def bio_45
-      puts "bio_45"
+      puts ""
+      puts "Welcome to Bio 45!"
    end
 
    def eng_46
