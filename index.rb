@@ -20,7 +20,7 @@ class CLI
       else
          @current_student = Student.create({name: @user_name})
          puts "Looks like you're new here."
-         self.learn_subject
+         self.learn_subject_new_user
       end
    end
    
@@ -50,7 +50,7 @@ class CLI
          elsif continue_subject == "42"
             self.math_42
          elsif continue_subject == "43"
-            self.bio_43
+            self.bio_43_part_2
          elsif continue_subject == "44"
             self.bio_44
          elsif continue_subject == "45"
@@ -81,6 +81,17 @@ class CLI
       return self.users_choices
    end
 
+   def learn_subject_new_user
+      puts ""
+      puts "What subject are you interested in learning?"
+      puts "1) Math"
+      puts "2) Biology"
+      puts "3) English"
+      puts "4) Coding"
+      @users_choice = gets.chomp()
+      return self.users_choices
+   end
+
    def users_choices
       if @users_choice == "5"
          return self.option_menu
@@ -89,15 +100,43 @@ class CLI
          puts "Maybe you should look into Flatiron, instead."
          return self.learn_subject
       elsif @users_choice == "1"
-         puts ""
-         puts "Before we choose a lesson plan, let's take a quick quiz."
-         puts ""
-         return self.math_quiz
+         existing_subject = Lesson.where(student_id: @user_name.id, subject_id: 40)
+         if (existing_subject != nil)
+            puts "It looks like you're already learning this subject."
+            puts "Would you like to continue studying?"
+            puts "Yes / No"
+            yes_or_no = gets.chomp()
+            if yes_or_no == "No" || yes_or_no == "no" || yes_or_no == "NO"
+               return self.option_menu
+            else
+               return self.math_40
+            end
+         else
+            puts ""
+            puts "Before we choose a lesson plan, let's take a quick quiz."
+            puts ""
+            return self.math_quiz
+         end
       elsif @users_choice == "2"
-         puts ""
-         puts "Before we choose a lesson plan, let's take a quick quiz."
-         puts ""
-         return self.biology_quiz
+         existing_beginner_subject = Lesson.where(student_id: @current_student.id, subject_id: 43)
+         existing_intermediate_subject = Lesson.where(student_id: @current_student.id, subject_id: 44)
+         existing_expert_subject = Lesson.where(student_id: @current_student.id, subject_id: 45)
+         if (existing_beginner_subject != nil && existing_intermediate_subject != nil && existing_expert_subject != nil)
+            puts "It looks like you're already learning this subject."
+            puts "Would you like to continue studying?"
+            puts "Yes / No"
+            yes_or_no = gets.chomp()
+            if yes_or_no == "No" || yes_or_no == "no" || yes_or_no == "NO"
+               return self.option_menu
+            else
+               return self.bio_43_part_2
+            end
+         else
+            puts ""
+            puts "Before we choose a lesson plan, let's take a quick quiz."
+            puts ""
+            return self.biology_quiz
+         end
       elsif @users_choice == "3"
          puts ""
          puts "Before we choose a lesson plan, let's take a quick quiz."
@@ -279,7 +318,7 @@ class CLI
             puts "You've been placed in begginer biology."
             puts "Let's start where it all began."
             puts ""
-            self.bio_43
+            self.bio_43_part_1
          elsif right_answers < 5
             Lesson.create({student_id: @current_student.id, subject_id: 44})
             puts ""
@@ -408,7 +447,7 @@ class CLI
       puts "Welcome to Math 42!"
    end
 
-   def bio_43
+   def bio_43_part_1
       puts ""
       puts "Welcome to Bio 43!"
       puts ""
@@ -423,9 +462,14 @@ class CLI
       puts ""
       puts "Continue reading? Yes / No"
       yes_or_no = gets.chomp()
-      if yes_or_no == "no"
-         self.option_menu
+      if yes_or_no == "no" || yes_or_no == "No" || yes_or_no == "NO"
+         return self.option_menu
+      else yes_or_no == "yes" || yes_or_no == "Yes" || yes_or_no == "YES"
+         return self.bio_43_part_2
       end
+   end
+
+   def bio_43_part_2
       puts ""
       puts "DNA is the genetic material that makes you, you and makes me, me."
       puts "It makes an elephant an elephant and a flower a flower."
@@ -433,10 +477,24 @@ class CLI
       puts "The only difference is in how it's expressed."
       puts ""
       puts "Continue reading? Yes / No"
+      puts "Or type 'back' to go to the previous part of this lesson"
       yes_or_no = gets.chomp()
-      if yes_or_no == "no"
-         self.option_menu
+      if yes_or_no == "no" || yes_or_no == "No" || yes_or_no == "NO"
+         return self.option_menu
+      elsif yes_or_no == "back" || yes_or_no == "Back"
+         return self.bio_43_part_1
+      elsif yes_or_no == "yes" || yes_or_no == "Yes" || yes_or_no == "YES"
+         return self.bio_43_part_3
       end
+   end
+
+   def bio_43_part_3
+      puts ""
+      puts "Coming soon!"
+      puts "Looks like you've made it through all the material we have for this subject so far."
+      puts "Please stay tuned to see when the material is updated."
+      puts ""
+      self.option_menu
    end
 
    def bio_44
