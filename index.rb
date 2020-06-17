@@ -1,31 +1,41 @@
 require_relative './config/environment.rb'
+require 'tty-prompt'
 ActiveRecord::Base.logger = nil
 
 
 class CLI
    
    def initialize
+       a = Artii::Base.new :font => 'slant'
+      puts a.asciify('Study Helper').blue
       self.opening_message()
    end
 
    def opening_message
+   puts ""
    puts "Welcome to StudyHelper! We're exicted to help you reach your learning goals."
-   puts "Please enter your name"
+   puts ""
+   puts "Please enter your name".light_blue
    @user_name = gets.chomp()
    existing_student = Student.find_by(name: @user_name)
       if (existing_student != nil)
          @current_student = existing_student
-         puts "Welcome back, #{@current_student.name}."
+         puts ""
+         puts "Welcome back, #{@current_student.name}.".yellow
          self.option_menu
       else
          @current_student = Student.create({name: @user_name})
-         puts "Looks like you're new here."
-         self.learn_subject_new_user
+        puts "Looks like you're new here.".yellow
+         self.learn_subject
       end
    end
+
    
    def option_menu
       puts ""
+      #option_menu_prompt = 
+      # choices = {1 => "Look at my subjects",  2 => 'Learn a new subject', 3 => "Quit"}
+      # prompt.select("What would you like to do?", choices)
       puts "What would you like to do?"
       puts "1) Look at my subjects"
       puts "2) Learn a new subject"
@@ -372,7 +382,7 @@ class CLI
       puts "To see well, the lights in this room need to be adjusted."
       puts "1) This sentence is correct."
       puts "2) This sentence has a dangling modifier."
-      puts "3) This sentence has a coma splice."
+      puts "3) This sentence has a comma splice."
       answer3 = gets.chomp()
       if answer3 == "2"
          right_answers = right_answers + 1
@@ -438,8 +448,21 @@ class CLI
    end
 
    def math_41
+      puts "math_41"
+      puts "Lesson 1: Cancelling or Converting Units "
+      puts "To convert between units, you're usually given one measure and asked to convert another measure. For instance, you'll be given some volume in 'gallons' and be asked to convert the volume to 'fluid ounces'. They will have given you the conversion units that are suitable to the task. In these simple scenarios, all you have to do to convert is remember a fairly simple rule:"
+      puts "going to smaller units means going to bigger numbers, so multiply"
+      puts "going to bigger units means, going to smaller numbers, so divide"
       puts ""
-      puts "Welcome to Math 41!"
+      puts "Here's how it works"
+      puts ""
+      puts "Convert 3 gallons to quarts"
+      puts ""
+      puts "Quarts are smaller than gallons; every gallon has 4 quarts. Since I'm converting from a larger unit(gallons) to a smaller unit(quarts), my answer needs to be a bigger number. So I multiply:"
+      puts "(3)(4) = 12"
+      puts "Then:"
+      puts ""
+      puts "Answer: 12 quarts"
    end
 
    def math_42
@@ -508,15 +531,78 @@ class CLI
    end
 
    def eng_46
-      puts "eng_46"
+      puts ""
+      puts "Welcome to English for Beginners."
+      puts "Lesson 1: What is a noun?"
+      puts ""
+      puts "Definition: A noun is a word that names a person, place, thing, or idea."
+      puts ""
+      puts "Concrete nouns name people, places, or things that you can touch, see, hear, smell, or taste."
+      puts "Person: woman, Mr. Rodgers, doctor"
+      puts "Place: river, Paris, home"
+      puts "Thing: dog, book, Porsche"
+      puts ""
+      puts "Abstract nouns name ideas, concepts, or emotions. These nouns are intangible, which means you cannot touch, see, hear, smell, or taste them."
+      puts "Idea: love, justice, religion"
+      puts "Emotion: happiness, anger, excitement"
+      puts ""
+      puts "Practice What You've Learned"
+      puts ""
+      puts "Which of the following is a concrete noun?"
+      puts "1) man"
+      puts "2) running"
+      puts "3) fear"
+      practice_answer = gets.chomp()
+      if practice_answer == "1"
+         puts "Awesome!"
+      else 
+         puts "Sorry, that's incorrect. Let's continue learning about nouns."
+      end
+
    end
 
    def eng_47
-      puts "eng_47"
+      puts ""
+      puts "Welcome to Intermediate English."
+      puts "Lesson 1: What is a clause?"
+      puts ""
+      puts "Definition: A clause is a group of words that has both a subject and a predicate. Every complete sentence is made up of at least one clause."
+      puts ""
+      puts "Michael bought a new computer. (One sentence, one clause)"
+      puts "Michael bought a new computer, but he still has the old one. (One sentence, two clauses)"
+      puts "Although he still has his old one, Michael now has a new computer. (One sentence, two clauses)"
+      puts ""
+      puts "Definition: An independent clause (or main clause) makes sense by itself. It expresses a complete thought."
+      puts ""
+      puts "Michael bought a new computer. (One independent clause)"
+      puts "Michael bought a new computer, but he still has the old one. [Two independent clauses (Coordinating conjunctions don't count as part of the clause.)]"
+      puts ""
+      puts "Definition: A dependent clause (or subordinate clause) does not make sense by itself. It does not express a complete thought."
+      puts ""
+      puts "Although he still has his old one. (Without the independent clause, a dependent clause is a sentence fragment.)"
+      puts ""
+      puts "A dependent clause usually begins with a subordinating conjunction, a relative pronoun, or some other word that causes it to become dependent. A dependent clause will make sense only when attached to an independent clause."
+      puts ""
+      puts "Michael now has a new computer although he still has his old one. (Combined with an independent clause, the dependent clause makes sense.)"
+      puts ""
+      puts "Dependent clauses can come after, before, or in the middle of the independent clause."
+      puts ""
+      puts "Michael, although he still has his old one, now has a new computer. (Dependent clause inside the independent clause.)"
    end
 
    def eng_48
       puts "eng_48"
+      puts ""
+      puts "Welcome to Advanced English."
+      puts "Lesson 1: What is Inference?"
+      puts ""
+      puts "Inference is using observation and background to reach a logical conclusion. You probably practive inference everyday. For example, if you see someone eating a new food and he or she makes a face, then you infer he does not like it. Or if someone slams a door, you can infer that he is upset about something."
+      puts ""
+      puts "Before you can begin to practice inference in literature, you should know what you are looking for. Your goal is to find the intended meaning of the text. Intended meaning is what we think the author is trying to teach us."
+      puts ""
+      puts "Why is it important to make inferences? When writing a story, an author will not include all the information for us. They will expect us to read between the lines and reach conclusions about the text. When making inferences, you are looking beyond what is stated in the text and finding ideas to which the author only hints. This makes you a more active reader and critical thinker. It also makes it easier to understand what the author is sharing with you."
+
+
    end
 
 end
