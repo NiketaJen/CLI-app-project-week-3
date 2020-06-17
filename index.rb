@@ -33,11 +33,35 @@ class CLI
       user_selects = gets.chomp()
       if user_selects == "1"
          puts ""
-         puts "Your subjects"
+         puts "#{@user_name}'s subjects:"
          @current_student.subjects.each do |subject|
-            puts subject.topic 
-            puts subject.level_of_difficulty
+            puts "#{subject.topic} #{subject.id}"
             end
+         puts ""
+         puts "Please enter the number of the subject you'd like to continue learning."
+         puts "Or type return to go back to the main menu."
+         continue_subject = gets.chomp()
+         if continue_subject == "return"
+            self.option_menu
+         elsif continue_subject == "40"
+            self.math_40
+         elsif continue_subject == "41"
+            self.math_41
+         elsif continue_subject == "42"
+            self.math_42
+         elsif continue_subject == "43"
+            self.bio_43
+         elsif continue_subject == "44"
+            self.bio_44
+         elsif continue_subject == "45"
+            self.bio_45
+         elsif continue_subject == "46"
+            self.eng_46
+         elsif continue_subject == "47"
+            self.eng_47
+         elsif continue_subject == "48"
+            self.eng_48
+         end
       elsif user_selects == "2"
          self.learn_subject
       elsif user_selects == "3"
@@ -67,14 +91,17 @@ class CLI
       elsif @users_choice == "1"
          puts ""
          puts "Before we choose a lesson plan, let's take a quick quiz."
+         puts ""
          return self.math_quiz
       elsif @users_choice == "2"
          puts ""
          puts "Before we choose a lesson plan, let's take a quick quiz."
+         puts ""
          return self.biology_quiz
       elsif @users_choice == "3"
          puts ""
          puts "Before we choose a lesson plan, let's take a quick quiz."
+         puts ""
          return self.english_quiz
       end
    end
@@ -146,18 +173,27 @@ class CLI
          puts "Not exactly"
       end
       puts "Oh snap! You got #{right_answers} out of 5 correct answers."
-      if right_answers == 0
+      if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 40})
-      elsif right_answers == 1
-         Lesson.create({student_id: @current_student.id, subject_id: 40})
-      elsif right_answers == 2
-         Lesson.create({student_id: @current_student.id, subject_id: 40})
-      elsif right_answers == 3
+         puts ""
+         puts "You've been placed in math for beginners."
+         puts "Let's start with some basics."
+         puts ""
+         self.math_40
+      elsif right_answers < 5
          Lesson.create({student_id: @current_student.id, subject_id: 41})
-      elsif right_answers == 4
-         Lesson.create({student_id: @current_student.id, subject_id: 41})
+         puts ""
+         puts "Congrats! You've been placed in intermediate math."
+         puts "Let's get started."
+         puts ""
+         self.math_41
       elsif right_answers == 5
          Lesson.create({student_id: @current_student.id, subject_id: 42})
+         puts ""
+         puts "Look out! We've got an expert here."
+         puts "Let's see if we can find something you don't know."
+         puts ""
+         self.math_42
       end
    end
 
@@ -237,18 +273,27 @@ class CLI
          end
          puts ""
          puts "Oh snap! You got #{right_answers} out of 5 answers correct."
-         if right_answers == 0
+         if right_answers < 3
             Lesson.create({student_id: @current_student.id, subject_id: 43})
-         elsif right_answers == 1
-            Lesson.create({student_id: @current_student.id, subject_id: 43})
-         elsif right_answers == 2
-            Lesson.create({student_id: @current_student.id, subject_id: 43})
-         elsif right_answers == 3
+            puts ""
+            puts "You've been placed in biology for beginners."
+            puts "Let's start where it all began."
+            puts ""
+            self.bio_43
+         elsif right_answers < 5
             Lesson.create({student_id: @current_student.id, subject_id: 44})
-         elsif right_answers == 4
-            Lesson.create({student_id: @current_student.id, subject_id: 44})
+            puts ""
+            puts "Congrats! You've been placed in intermediate biology."
+            puts "Let's get started."
+            puts ""
+            self.bio_44
          elsif right_answers == 5
             Lesson.create({student_id: @current_student.id, subject_id: 45})
+            puts ""
+            puts "Look out! We've got an expert here."
+            puts "Let's see if we can find some stuff you don't know."
+            puts ""
+            self.bio_45
          end
    end
 
@@ -326,12 +371,64 @@ class CLI
       puts "You got #{right_answers} out of 5 answers correct."
       if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 46})
+         puts ""
+         puts "You've been placed in English for beginners."
+         puts "Let's start with some basics."
+         puts ""
+         self.eng_46
       elsif right_answers < 5
          Lesson.create({student_id: @current_student.id, subject_id: 47})
+         puts ""
+         puts "Congrats! You've been placed in to intermediate English"
+         puts "Let's get started."
+         puts ""
+         self.eng_47
       elsif right_answers == 5
          Lesson.create({student_id: @current_student.id, subject_id: 48})
+         puts ""
+         puts "Look out! We've got an expert here."
+         puts "Let's see if we can cover some stuff you don't know."
+         puts ""
+         self.eng_48
       end
    end
+
+   def math_40
+      puts "math_40"
+   end
+
+   def math_41
+      puts "math_41"
+   end
+
+   def math_42
+      puts "math_42"
+   end
+
+   def bio_43
+      puts "bio_43"
+   end
+
+   def bio_44
+      puts "bio_44"
+   end
+
+   def bio_45
+      puts "bio_45"
+   end
+
+   def eng_46
+      puts "eng_46"
+   end
+
+   def eng_47
+      puts "eng_47"
+   end
+
+   def eng_48
+      puts "eng_48"
+   end
+
 end
 
 CLI.new()
