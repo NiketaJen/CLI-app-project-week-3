@@ -608,10 +608,26 @@ class CLI
       puts "Michael bought a new computer, but he still has the old one. #{'(One sentence, two clauses)'.magenta}"
       puts "Although he still has his old one, Michael now has a new computer. #{'(One sentence, two clauses)'.magenta}"
       puts ""
+      continue_studying_prompt = TTY::Prompt.new()
+      continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
+      if continue_studying_prompt == "no" 
+         return self.option_menu
+      else continue_studying_prompt == "yes" 
+         # return self.bio_43_part_2
+      end
+      puts ""
       puts "#{'Definition'.blue}: An independent clause (or main clause) makes sense by itself. It expresses a complete thought."
       puts ""
       puts "Michael bought a new computer. #{'(One independent clause)'.magenta}"
       puts "Michael bought a new computer, but he still has the old one. #{'[Two independent clauses (Coordinating conjunctions do not count as part of the clause.)]'.magenta}'"
+      puts ""
+      continue_studying_prompt = TTY::Prompt.new()
+      continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
+      if continue_studying_prompt == "no" 
+         return self.option_menu
+      else continue_studying_prompt == "yes" 
+         # return self.bio_43_part_2
+      end
       puts ""
       puts "#{'Definition'.blue}: A dependent clause (or subordinate clause) does not make sense by itself. It does not express a complete thought."
       puts ""
@@ -624,6 +640,9 @@ class CLI
       puts "Dependent clauses can come after, before, or in the middle of the independent clause."
       puts ""
       puts "Michael, although he still has his old one, now has a new computer. #{'(Dependent clause inside the independent clause.)'.magenta}"
+      puts ""
+      puts "You've completed Lesson 1".yellow
+         self.option_menu
    end
 
    def eng_48
