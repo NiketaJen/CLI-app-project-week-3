@@ -12,13 +12,15 @@ class CLI
       self.opening_message()
    end
 
-#    def slowly
-#       yield.each_char { |c| putc c; $stdout.flush; sleep 0.10 }
-#   end
+   # def slowly 
+   #    yield.each_char { |c| putc c; $stdout.flush; sleep 0.25}
+   # end
 
    def opening_message
    puts ""
+   
    puts "Welcome to Study Helper! We're exicted to help you reach your learning goals.".colorize(:white).on_blue.bold
+   
    puts ""
    puts "Please enter your name".light_blue
    @user_name = gets.chomp()
@@ -239,7 +241,11 @@ class CLI
          puts "Not exactly".red
       end
       puts ""
-      puts "Oh snap! You got #{right_answers} out of 5 correct answers.".light_blue.bold
+      for i in "Oh snap! You got #{right_answers} out of 5 correct answers.".light_blue.bold.chars.to_a
+         print i 
+         sleep 0.10
+      end
+    puts ""
       if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 40})
          puts ""
@@ -334,7 +340,10 @@ class CLI
             puts "Yeah, we didn't really expect anyone to get this one right, anyway.".red
          end
          puts ""
-         puts "Oh snap! You got #{right_answers} out of 5 answers correct.".light_blue.bold
+         for i in "Oh snap! You got #{right_answers} out of 5 answers correct.".light_blue.bold.chars.to_a
+            print i 
+            sleep 0.10
+         end
          puts ""
          if right_answers < 3
             Lesson.create({student_id: @current_student.id, subject_id: 43})
@@ -433,7 +442,10 @@ class CLI
          puts "Incorrect".red
       end
       puts ""
-      puts "You got #{right_answers} out of 5 answers correct.".light_blue.bold
+      for i in "You got #{right_answers} out of 5 answers correct.".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       if right_answers < 3
          Lesson.create({student_id: @current_student.id, subject_id: 46})
@@ -461,73 +473,101 @@ class CLI
 
    def math_40
       puts ""
-      puts "Welcome to Beginner Math!".light_blue.bold
+      for i in "Welcome to Beginner Math!".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
+      puts ""
+      puts "Coming soon!".yellow.bold
+      puts "Looks like you've made it through all the material we have for this subject so far."
+      puts "Please stay tuned to see when the material is updated."
+      puts ""
+      self.option_menu
    end
 
    def math_41
-      puts "Welcome to Intermediate Math!".light_blue.bold
+      for i in "Welcome to Intermediate Math!".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       puts "#{'Lesson 1'.blue}: Cancelling or Converting Units ".bold
       puts ""
-      puts "To convert between units, you're usually given one measure and asked to convert another measure. For instance, you'll be given some volume in 'gallons' and be asked to convert the volume to 'fluid ounces'. They will have given you the conversion units that are suitable to the task. In these simple scenarios, all you have to do to convert is remember a fairly simple rule:"
-      puts ""   
-      puts "going to #{'smaller'.magenta} units means going to #{'bigger'.magenta} numbers, so multiply"
-      puts "going to #{'bigger'.magenta} units means, going to #{'smaller'.magenta} numbers, so divide"
+      for i in "To convert between units, you're usually given one measure and asked to convert another measure. For instance, you'll be given some volume in gallons and be asked to convert the volume to fluid ounces. They will have given you the conversion units that are suitable to the task. In these simple scenarios, all you have to do to convert is remember a fairly simple rule:
+  
+          going to #{'smaller'.magenta} units means going to #{'bigger'.magenta} numbers, so multiply
+          going to #{'bigger'.magenta} units means, going to #{'smaller'.magenta} numbers, so divide
+   
+   #{'Here is how it works'.yellow}
+   Convert 3 gallons to quarts
+   Quarts are smaller than gallons; every gallon has 4 quarts. Since I am converting from a larger unit(gallons) to a smaller unit(quarts), my answer needs to be a bigger number. So I multiply:
+      #{'(3)(4) = 12'.light_blue}
+   Then:
+      #{'Answer'.blue}: 12 quarts".chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
-      puts "Here's how it works".yellow
-      puts ""
-      puts "Convert 3 gallons to quarts"
-      puts ""
-      puts "Quarts are smaller than gallons; every gallon has 4 quarts. Since I'm converting from a larger unit(gallons) to a smaller unit(quarts), my answer needs to be a bigger number. So I multiply:"
-      puts ""
-      puts "(3)(4) = 12".light_blue
-      puts ""
-      puts "Then:"
-      puts ""
-      puts "#{'Answer'.blue}: 12 quarts"
+      puts "You've completed Lesson 1".yellow
+         self.option_menu
    end
 
    def math_42
       puts ""
-      puts "Welcome to Expert Math!".light_blue.bold
+      for i in "Welcome to Expert Math!".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
+      puts ""
+      puts "Coming soon!".yellow.bold
+      puts "Looks like you've made it through all the material we have for this subject so far."
+      puts "Please stay tuned to see when the material is updated."
+      puts ""
+      self.option_menu
    end
 
    def bio_43_part_1
       puts ""
-      puts "Welcome to Beginner Biology!".light_blue.bold
+      for i in "Welcome to Beginner Biology!".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
-      #self.slowly do
-      puts "Everything in the world can be placed into one of two categories:"
-      puts "Biotic or Abiotic"
-      puts "Abiotic means 'non-living.' In this case, it means things that were never alive."
-      puts "Things like mountains, water, or the sky."
-      puts "Conversely, biotic means 'living,' and that includes anything that's ever lived."
-      puts "That could be lions, bacteria, people, or even the flowers I forgot to water last week that have since passed."
-      puts "Though this encompasses vastly different types of life from whales to mushrooms and trees to protists,"
-      puts "there are shared traits among all of them.  Perhaps none as important as DNA."
+      
+      for i in  "Everything in the world can be placed into one of two categories: Biotic or Abiotic 
+
+      Abiotic means 'non-living.' In this case, it means things that were never alive.  
+      Things like mountains, water, or the sky.  
+      Conversely, biotic means 'living,' and that includes anything that's ever lived.   
+      That could be lions, bacteria, people, or even the flowers I forgot to water last week that have since passed. 
+      Though this encompasses vastly different types of life from whales to mushrooms and trees to protists,  
+      there are shared traits among all of them.  Perhaps none as important as DNA.".chars.to_a
+      print i
+      sleep 0.10
+   end
       puts ""
       #end
       continue_studying_prompt = TTY::Prompt.new()
       continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
-      if continue_studying_prompt == "no" 
+      if continue_studying == "no" 
          return self.option_menu
-      else continue_studying_prompt == "yes" 
+      else continue_studying == "yes" 
          return self.bio_43_part_2
       end
    end
 
    def bio_43_part_2
       puts ""
-      puts "DNA is the genetic material that makes you, you and makes me, me."
-      puts "It makes an elephant an elephant and a flower a flower."
-      puts "Despite how different these things may seem, their DNA is actually the same."
-      puts "The only difference is in how it's expressed."
+      for i in "DNA is the genetic material that makes you, you and makes me, me.
+      It makes an elephant an elephant and a flower a flower.
+      Despite how different these things may seem, their DNA is actually the same.
+      The only difference is in how it's expressed.".chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       continue_studying_prompt = TTY::Prompt.new()
-      continue_studying = continue_studying_prompt.select("Continue reading?".yellow, %w(yes no back))
-
-      # puts "Select 'back' to go to the previous part of this lesson"
-      
+      continue_studying = continue_studying_prompt.select("Continue reading?".yellow, %w(yes no back)) 
       if continue_studying == "no" 
          return self.option_menu
       elsif continue_studying == "back" 
@@ -558,36 +598,45 @@ class CLI
 
    def eng_46
       puts ""
-      puts "Welcome to English for Beginners.".light_blue.bold
+      for i in "Welcome to English for Beginners.".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       puts "#{'Lesson 1'.blue}: What is a noun?".bold
       puts ""
-      puts "#{'Definition'.blue}: A #{'noun'.magenta} is a word that names a person, place, thing, or idea."
-      puts ""
-      puts "Concrete nouns name people, places, or things that you can touch, see, hear, smell, or taste."
-      puts "#{'Person'.blue}: woman, Mr. Rodgers, doctor"
-      puts "#{'Place'.blue}: river, Paris, home"
-      puts "#{'Thing'.blue}: dog, book, Porsche"
+      for i in "#{'Definition'.blue}: A #{'noun'.magenta} is a word that names a person, place, thing, or idea.
+      
+   Concrete nouns name people, places, or things that you can touch, see, hear, smell, or taste.
+      #{'Person'.blue}: woman, Mr. Rodgers, doctor
+      #{'Place'.blue}: river, Paris, home
+      #{'Thing'.blue}: dog, book, Porsche".chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       continue_studying_prompt = TTY::Prompt.new()
       continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
-      if continue_studying_prompt == "no" 
+      if continue_studying == "no" 
          return self.option_menu
-      else continue_studying_prompt == "yes" 
-         # return self.bio_43_part_2
       end
       puts ""
-      puts "Abstract nouns name ideas, concepts, or emotions. These nouns are intangible, which means you cannot touch, see, hear, smell, or taste them."
-      puts "#{'Idea'.blue}: love, justice, religion"
-      puts "#{'Emotion'.blue}: happiness, anger, excitement"
-      puts ""
-      puts "Practice What You've Learned".yellow
-      puts ""
+      for i in "Abstract nouns name ideas, concepts, or emotions. These nouns are intangible, which means you cannot touch, see, hear, smell, or taste them.
+      #{'Idea'.blue}: love, justice, religion
+      #{'Emotion'.blue}: happiness, anger, excitement
+      
+       #{'Practice What You have Learned'.yellow}".chars.to_a
+       print i 
+       sleep 0.10
+       end
+       puts ""
       practice_prompt = TTY::Prompt.new()
       choices = {"man" => 1,  "fear" => 2, "running" => 3}
       practice_answer = practice_prompt.select("Which of the following is a concrete noun?", choices)
       if practice_answer == 1
          puts "Awesome!".green
+         puts ""
+         puts"You've completed Lesson 1".yellow
          self.option_menu
       else 
          puts "Sorry, that's incorrect. Let's continue learning about nouns.".red
@@ -598,48 +647,56 @@ class CLI
 
    def eng_47
       puts ""
-      puts "Welcome to Intermediate English.".light_blue.bold
+      for i in "Welcome to Intermediate English.".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       puts "#{'Lesson 1'.blue}: What is a clause?".bold
       puts ""
-      puts "#{'Definition'.blue}: A clause is a group of words that has both a subject and a predicate. Every complete sentence is made up of at least one clause."
+      for i in "#{'Definition'.blue}: A clause is a group of words that has both a subject and a predicate. Every complete sentence is made up of at least one clause.
+   
+         Michael bought a new computer. #{'(One sentence, one clause)'.magenta}
+         Michael bought a new computer, but he still has the old one. #{'(One sentence, two clauses)'.magenta}
+         Although he still has his old one, Michael now has a new computer. #{'(One sentence, two clauses)'.magenta}".chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
-      puts "Michael bought a new computer. #{'(One sentence, one clause)'.magenta}"
-      puts "Michael bought a new computer, but he still has the old one. #{'(One sentence, two clauses)'.magenta}"
-      puts "Although he still has his old one, Michael now has a new computer. #{'(One sentence, two clauses)'.magenta}"
+      continue_studying_prompt = TTY::Prompt.new()
+      continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
+      if continue_studying_prompt == "no" 
+         return self.option_menu 
+      end
+      puts ""
+      for i in "#{'Definition'.blue}: An independent clause (or main clause) makes sense by itself. It expresses a complete thought.
+      
+         Michael bought a new computer. #{'(One independent clause)'.magenta}
+         Michael bought a new computer, but he still has the old one. #{'[Two independent clauses (Coordinating conjunctions do not count as part of the clause.)]'.magenta}".chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
       continue_studying_prompt = TTY::Prompt.new()
       continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
       if continue_studying_prompt == "no" 
          return self.option_menu
-      else continue_studying_prompt == "yes" 
-         # return self.bio_43_part_2
       end
       puts ""
-      puts "#{'Definition'.blue}: An independent clause (or main clause) makes sense by itself. It expresses a complete thought."
-      puts ""
-      puts "Michael bought a new computer. #{'(One independent clause)'.magenta}"
-      puts "Michael bought a new computer, but he still has the old one. #{'[Two independent clauses (Coordinating conjunctions do not count as part of the clause.)]'.magenta}'"
-      puts ""
-      continue_studying_prompt = TTY::Prompt.new()
-      continue_studying = continue_studying_prompt.select("Would you like to continue studying?".yellow, %w(yes no))
-      if continue_studying_prompt == "no" 
-         return self.option_menu
-      else continue_studying_prompt == "yes" 
-         # return self.bio_43_part_2
+      for i in "#{'Definition'.blue}: A dependent clause (or subordinate clause) does not make sense by itself. It does not express a complete thought.
+      
+         Although he still has his old one. #{'(Without the independent clause, a dependent clause is a sentence fragment.)'.magenta}
+      
+      A dependent clause usually begins with a subordinating conjunction, a relative pronoun, or some other word that causes it to become dependent. A dependent clause will make sense only when attached to an independent clause.
+      
+         Michael now has a new computer although he still has his old one. #{'(Combined with an independent clause, the dependent clause makes sense.)'.magenta}
+      
+      Dependent clauses can come after, before, or in the middle of the independent clause.
+      
+         Michael, although he still has his old one, now has a new computer. #{'(Dependent clause inside the independent clause.)'.magenta}".chars.to_a
+      print i 
+      sleep 0.10
       end
-      puts ""
-      puts "#{'Definition'.blue}: A dependent clause (or subordinate clause) does not make sense by itself. It does not express a complete thought."
-      puts ""
-      puts "Although he still has his old one. #{'(Without the independent clause, a dependent clause is a sentence fragment.)'.magenta}"
-      puts ""
-      puts "A dependent clause usually begins with a subordinating conjunction, a relative pronoun, or some other word that causes it to become dependent. A dependent clause will make sense only when attached to an independent clause."
-      puts ""
-      puts "Michael now has a new computer although he still has his old one. #{'(Combined with an independent clause, the dependent clause makes sense.)'.magenta}"
-      puts ""
-      puts "Dependent clauses can come after, before, or in the middle of the independent clause."
-      puts ""
-      puts "Michael, although he still has his old one, now has a new computer. #{'(Dependent clause inside the independent clause.)'.magenta}"
       puts ""
       puts "You've completed Lesson 1".yellow
          self.option_menu
@@ -647,16 +704,24 @@ class CLI
 
    def eng_48
       puts ""
-      puts "Welcome to Advanced English.".light_blue.bold
+      for i in "Welcome to Advanced English.".light_blue.bold.chars.to_a
+      print i 
+      sleep 0.10
+      end
       puts ""
-      puts "#{'Lesson 1'.blue}: What is Inference?".bold
+      puts "Coming soon!".yellow.bold
+      puts "Looks like you've made it through all the material we have for this subject so far."
+      puts "Please stay tuned to see when the material is updated."
       puts ""
-      puts "Inference is using observation and background to reach a logical conclusion. You probably practive inference everyday. For example, if you see someone eating a new food and he or she makes a face, then you infer he does not like it. Or if someone slams a door, you can infer that he is upset about something."
-      puts ""
-      puts "Before you can begin to practice inference in literature, you should know what you are looking for. Your goal is to find the intended meaning of the text. Intended meaning is what we think the author is trying to teach us."
-      puts ""
-      puts "Why is it important to make inferences? When writing a story, an author will not include all the information for us. They will expect us to read between the lines and reach conclusions about the text. When making inferences, you are looking beyond what is stated in the text and finding ideas to which the author only hints. This makes you a more active reader and critical thinker. It also makes it easier to understand what the author is sharing with you."
-
+      self.option_menu
+      # puts ""
+      # puts "#{'Lesson 1'.blue}: What is Inference?".bold
+      # puts ""
+      # puts "Inference is using observation and background to reach a logical conclusion. You probably practive inference everyday. For example, if you see someone eating a new food and he or she makes a face, then you infer he does not like it. Or if someone slams a door, you can infer that he is upset about something."
+      # puts ""
+      # puts "Before you can begin to practice inference in literature, you should know what you are looking for. Your goal is to find the intended meaning of the text. Intended meaning is what we think the author is trying to teach us."
+      # puts ""
+      # puts "Why is it important to make inferences? When writing a story, an author will not include all the information for us. They will expect us to read between the lines and reach conclusions about the text. When making inferences, you are looking beyond what is stated in the text and finding ideas to which the author only hints. This makes you a more active reader and critical thinker. It also makes it easier to understand what the author is sharing with you."
 
    end
 
